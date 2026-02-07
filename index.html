@@ -141,4 +141,36 @@
     function yesClicked() {
         document.body.innerHTML = `
             <div style="
-                h
+                height:100vh;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                flex-direction:column;
+                background:radial-gradient(circle at bottom,#ffb703,#ff6a00,#9d0208);
+                color:white;
+                text-align:center;
+                font-family:'Segoe UI', Arial, sans-serif;
+                padding:20px;
+            ">
+                <h1 style="font-size:3rem;">Yayyyyy!!! 😍🔥</h1>
+                <h2 style="font-size:1.8rem;">You are my Valentine 💍</h2>
+                <h3 style="font-size:1.5rem;">Saptapadi Forever ❤️</h3>
+            </div>
+        `;
+    }
+
+    /* 🔥 Generate fire particles */
+    setInterval(() => {
+        const fire = document.createElement("div");
+        fire.className = "fire";
+        fire.innerHTML = "🔥";
+        fire.style.left = Math.random() * 100 + "vw";
+        fire.style.animationDuration = (4 + Math.random() * 3) + "s";
+        document.body.appendChild(fire);
+
+        setTimeout(() => fire.remove(), 8000);
+    }, 320);
+</script>
+
+</body>
+</html>
