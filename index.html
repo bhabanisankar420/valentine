@@ -2,6 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+
+<!-- 🔥 THIS LINE FIXES MOBILE SCALING -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Be My Valentine ❤️</title>
 
 <style>
@@ -12,50 +16,52 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background: radial-gradient(circle at top, #ff9aa2, #ff4d6d);
+        background: radial-gradient(circle at bottom, #ffb703, #ff6a00, #9d0208);
         font-family: 'Segoe UI', Arial, sans-serif;
     }
 
     .box {
-        background: rgba(255,255,255,0.95);
-        padding: 45px;
-        border-radius: 30px;
+        background: rgba(255,255,255,0.97);
+        padding: 28px;
+        border-radius: 28px;
         text-align: center;
-        box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-        max-width: 90%;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+        width: 90%;
+        max-width: 420px;
         z-index: 2;
     }
 
     h1 {
-        color: #ff3366;
-        font-size: 46px;
+        color: #c9184a;
+        font-size: 2.4rem;
         margin-bottom: 10px;
     }
 
-    h2 {
-        font-size: 28px;
-        color: #444;
-        margin-top: 10px;
+    .special {
+        font-size: 1.6rem;
+        color: #9d0208;
+        font-weight: bold;
+        margin: 14px 0;
     }
 
-    .special {
-        font-size: 30px;
-        color: #d6336c;
-        font-weight: bold;
-        margin: 18px 0;
+    h2 {
+        font-size: 1.3rem;
+        color: #444;
+        margin-top: 8px;
+        line-height: 1.4;
     }
 
     button {
-        padding: 18px 40px;
-        font-size: 26px;
+        padding: 16px 36px;
+        font-size: 1.4rem;
         border: none;
-        border-radius: 35px;
+        border-radius: 40px;
         cursor: pointer;
-        margin: 18px;
+        margin: 16px;
     }
 
     #yes {
-        background-color: #ff3366;
+        background-color: #c9184a;
         color: white;
     }
 
@@ -64,32 +70,41 @@
         position: absolute;
     }
 
-    /* Floating hearts animation */
-    .heart {
+    /* 🔥 Sacred Fire Animation */
+    .fire {
         position: absolute;
-        bottom: -50px;
-        font-size: 24px;
-        animation: floatUp 8s linear infinite;
-        opacity: 0.7;
+        bottom: -40px;
+        font-size: 26px;
+        animation: rise 6s linear infinite;
+        opacity: 0.8;
+        filter: drop-shadow(0 0 8px orange);
     }
 
-    @keyframes floatUp {
+    @keyframes rise {
         0% {
-            transform: translateY(0) scale(1);
+            transform: translateY(0) scale(0.9);
             opacity: 0;
         }
-        10% { opacity: 0.7; }
+        10% { opacity: 0.9; }
         100% {
-            transform: translateY(-110vh) scale(1.8);
+            transform: translateY(-110vh) scale(1.7);
             opacity: 0;
         }
+    }
+
+    /* 📱 Extra boost for small phones */
+    @media (max-width: 380px) {
+        h1 { font-size: 2.1rem; }
+        .special { font-size: 1.4rem; }
+        h2 { font-size: 1.2rem; }
+        button { font-size: 1.3rem; padding: 14px 32px; }
     }
 </style>
 </head>
 
 <body>
 
-<!-- Background Music -->
+<!-- 🎵 Background Music -->
 <audio autoplay loop>
     <source src="odia_marriage_music.mp3" type="audio/mpeg">
 </audio>
@@ -102,11 +117,9 @@
     </div>
 
     <h2>
-        From our wedding vows to every heartbeat,<br>
-        will you be my Valentine too? 💍
+        As we walked around the sacred fire,<br>
+        will you be my Valentine too? 🔥💍
     </h2>
-
-    <br>
 
     <button id="yes" onclick="yesClicked()">YES ❤️</button>
     <button id="no">NO 🙈</button>
@@ -128,35 +141,4 @@
     function yesClicked() {
         document.body.innerHTML = `
             <div style="
-                height:100vh;
-                display:flex;
-                align-items:center;
-                justify-content:center;
-                flex-direction:column;
-                background:radial-gradient(circle,#ff9aa2,#ff4d6d);
-                color:white;
-                text-align:center;
-                font-family:'Segoe UI', Arial, sans-serif;
-            ">
-                <h1 style="font-size:52px;">Yayyyyy!!! 😍💖</h1>
-                <h2 style="font-size:32px;">You are my Valentine 💍</h2>
-                <h3 style="font-size:28px;">Forever & Always ❤️</h3>
-            </div>
-        `;
-    }
-
-    /* Create floating hearts */
-    setInterval(() => {
-        const heart = document.createElement("div");
-        heart.className = "heart";
-        heart.innerHTML = "❤️";
-        heart.style.left = Math.random() * 100 + "vw";
-        heart.style.animationDuration = (6 + Math.random() * 4) + "s";
-        document.body.appendChild(heart);
-
-        setTimeout(() => heart.remove(), 10000);
-    }, 400);
-</script>
-
-</body>
-</html>
+                h
