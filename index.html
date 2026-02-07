@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 
-<!-- 🔥 THIS LINE FIXES MOBILE SCALING -->
+<!-- ✅ This fixes small look on mobile -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Be My Valentine ❤️</title>
@@ -16,7 +16,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background: radial-gradient(circle at bottom, #ffb703, #ff6a00, #9d0208);
+        background: linear-gradient(135deg, #ff758c, #ff7eb3);
         font-family: 'Segoe UI', Arial, sans-serif;
     }
 
@@ -25,21 +25,21 @@
         padding: 28px;
         border-radius: 28px;
         text-align: center;
-        box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.25);
         width: 90%;
         max-width: 420px;
         z-index: 2;
     }
 
     h1 {
-        color: #c9184a;
+        color: #ff3366;
         font-size: 2.4rem;
         margin-bottom: 10px;
     }
 
     .special {
         font-size: 1.6rem;
-        color: #9d0208;
+        color: #d6336c;
         font-weight: bold;
         margin: 14px 0;
     }
@@ -61,7 +61,7 @@
     }
 
     #yes {
-        background-color: #c9184a;
+        background-color: #ff3366;
         color: white;
     }
 
@@ -70,29 +70,28 @@
         position: absolute;
     }
 
-    /* 🔥 Sacred Fire Animation */
-    .fire {
+    /* 💕 Soft floating hearts */
+    .heart {
         position: absolute;
         bottom: -40px;
-        font-size: 26px;
-        animation: rise 6s linear infinite;
-        opacity: 0.8;
-        filter: drop-shadow(0 0 8px orange);
+        font-size: 22px;
+        animation: floatUp 7s linear infinite;
+        opacity: 0.7;
     }
 
-    @keyframes rise {
+    @keyframes floatUp {
         0% {
             transform: translateY(0) scale(0.9);
             opacity: 0;
         }
-        10% { opacity: 0.9; }
+        10% { opacity: 0.7; }
         100% {
-            transform: translateY(-110vh) scale(1.7);
+            transform: translateY(-110vh) scale(1.6);
             opacity: 0;
         }
     }
 
-    /* 📱 Extra boost for small phones */
+    /* Extra support for very small phones */
     @media (max-width: 380px) {
         h1 { font-size: 2.1rem; }
         .special { font-size: 1.4rem; }
@@ -104,7 +103,7 @@
 
 <body>
 
-<!-- 🎵 Background Music -->
+<!-- 🎵 Soft background music (same as before) -->
 <audio autoplay loop>
     <source src="odia_marriage_music.mp3" type="audio/mpeg">
 </audio>
@@ -117,8 +116,8 @@
     </div>
 
     <h2>
-        As we walked around the sacred fire,<br>
-        will you be my Valentine too? 🔥💍
+        Every moment with you is special,<br>
+        will you be my Valentine too? 💍
     </h2>
 
     <button id="yes" onclick="yesClicked()">YES ❤️</button>
@@ -146,30 +145,30 @@
                 align-items:center;
                 justify-content:center;
                 flex-direction:column;
-                background:radial-gradient(circle at bottom,#ffb703,#ff6a00,#9d0208);
+                background:linear-gradient(135deg,#ff758c,#ff7eb3);
                 color:white;
                 text-align:center;
                 font-family:'Segoe UI', Arial, sans-serif;
                 padding:20px;
             ">
-                <h1 style="font-size:3rem;">Yayyyyy!!! 😍🔥</h1>
+                <h1 style="font-size:3rem;">Yayyyyy!!! 😍❤️</h1>
                 <h2 style="font-size:1.8rem;">You are my Valentine 💍</h2>
-                <h3 style="font-size:1.5rem;">Saptapadi Forever ❤️</h3>
+                <h3 style="font-size:1.5rem;">Forever & Always ❤️</h3>
             </div>
         `;
     }
 
-    /* 🔥 Generate fire particles */
+    /* 💕 Create floating hearts */
     setInterval(() => {
-        const fire = document.createElement("div");
-        fire.className = "fire";
-        fire.innerHTML = "🔥";
-        fire.style.left = Math.random() * 100 + "vw";
-        fire.style.animationDuration = (4 + Math.random() * 3) + "s";
-        document.body.appendChild(fire);
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (5 + Math.random() * 4) + "s";
+        document.body.appendChild(heart);
 
-        setTimeout(() => fire.remove(), 8000);
-    }, 320);
+        setTimeout(() => heart.remove(), 9000);
+    }, 400);
 </script>
 
 </body>
