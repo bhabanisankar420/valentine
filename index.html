@@ -22,7 +22,6 @@
         height: 100%;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
         padding: 6svh 5vw;
         box-sizing: border-box;
         text-align: center;
@@ -47,17 +46,19 @@
         line-height: 1.4;
     }
 
-    /* ✅ Button Area */
-    .button-zone {
-        position: relative;
-        height: 22svh;
-        margin-bottom: 2svh;
-    }
-
-    .yes-wrap {
+    /* ✅ YES area (fixed) */
+    .yes-area {
+        margin-top: 4svh;
+        margin-bottom: 4svh;
         display: flex;
         justify-content: center;
-        margin-bottom: 3svh;
+    }
+
+    /* ✅ NO sandbox (separate & lower) */
+    .no-area {
+        position: relative;
+        flex-grow: 1;
+        margin-top: 2svh;
     }
 
     button {
@@ -77,6 +78,7 @@
         background-color: #d9d9d9;
         position: absolute;
         left: 50%;
+        top: 20%;
         transform: translateX(-50%);
     }
 
@@ -114,10 +116,13 @@
         </h2>
     </div>
 
-    <div class="button-zone">
-        <div class="yes-wrap">
-            <button id="yes" onclick="yesClicked()">YES ❤️</button>
-        </div>
+    <!-- YES is FIXED -->
+    <div class="yes-area">
+        <button id="yes" onclick="yesClicked()">YES ❤️</button>
+    </div>
+
+    <!-- NO can move ONLY here -->
+    <div class="no-area" id="noArea">
         <button id="no">NO 🙈</button>
     </div>
 
@@ -125,13 +130,13 @@
 
 <script>
     const noBtn = document.getElementById("no");
-    const zone = document.querySelector(".button-zone");
+    const noArea = document.getElementById("noArea");
 
     noBtn.addEventListener("touchstart", moveNo);
     noBtn.addEventListener("mouseover", moveNo);
 
     function moveNo() {
-        const rect = zone.getBoundingClientRect();
+        const rect = noArea.getBoundingClientRect();
         const x = Math.random() * (rect.width - 140);
         const y = Math.random() * (rect.height - 80);
         noBtn.style.left = x + "px";
