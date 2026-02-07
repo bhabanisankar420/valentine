@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Be My Valentine ❤️</title>
+
 <style>
     body {
         height: 100vh;
@@ -11,40 +12,74 @@
         align-items: center;
         justify-content: center;
         background: linear-gradient(135deg, #ff758c, #ff7eb3);
-        font-family: Arial, sans-serif;
+        font-family: 'Segoe UI', Arial, sans-serif;
     }
+
     .box {
         background: white;
-        padding: 30px;
-        border-radius: 15px;
-        text-align: center;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    }
-    h1 {
-        color: #ff4d6d;
-    }
-    button {
-        padding: 12px 25px;
-        font-size: 18px;
-        border: none;
+        padding: 40px;
         border-radius: 25px;
-        cursor: pointer;
-        margin: 10px;
+        text-align: center;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+        max-width: 90%;
     }
+
+    h1 {
+        color: #ff3366;
+        font-size: 42px;
+        margin-bottom: 10px;
+    }
+
+    h2 {
+        font-size: 26px;
+        color: #444;
+        margin-top: 5px;
+    }
+
+    .odia {
+        font-size: 24px;
+        color: #d6336c;
+        margin: 15px 0;
+        font-weight: bold;
+    }
+
+    button {
+        padding: 16px 36px;
+        font-size: 24px;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        margin: 15px;
+    }
+
     #yes {
-        background-color: #ff4d6d;
+        background-color: #ff3366;
         color: white;
     }
+
     #no {
-        background-color: #ccc;
+        background-color: #cccccc;
         position: absolute;
     }
 </style>
 </head>
+
 <body>
 
 <div class="box">
     <h1>Will you be my Valentine? 💖</h1>
+
+    <div class="odia">
+        ମୋ ଜୀବନର ସବୁଠାରୁ ସୁନ୍ଦର ମହିଳା 💕
+    </div>
+
+    <h2>
+        Every day with you is special,<br>
+        but will you be mine on Valentine’s Day? 💍
+    </h2>
+
+    <br>
+
     <button id="yes" onclick="yesClicked()">YES ❤️</button>
     <button id="no">NO 🙈</button>
 </div>
@@ -56,18 +91,32 @@
     noBtn.addEventListener("touchstart", moveButton);
 
     function moveButton() {
-        const x = Math.random() * (window.innerWidth - 100);
-        const y = Math.random() * (window.innerHeight - 50);
+        const x = Math.random() * (window.innerWidth - 120);
+        const y = Math.random() * (window.innerHeight - 80);
         noBtn.style.left = x + "px";
         noBtn.style.top = y + "px";
     }
 
     function yesClicked() {
         document.body.innerHTML = `
-            <div style="text-align:center; color:white;">
-                <h1>Yayyyy!!! 😍💍</h1>
-                <h2>You are my Valentine ❤️</h2>
-            </div>`;
+            <div style="
+                height:100vh;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                flex-direction:column;
+                background:linear-gradient(135deg,#ff758c,#ff7eb3);
+                color:white;
+                text-align:center;
+                font-family:'Segoe UI', Arial, sans-serif;
+            ">
+                <h1 style="font-size:50px;">Yayyyyy!!! 😍💖</h1>
+                <h2 style="font-size:30px;">You are my Valentine 💍</h2>
+                <h3 style="font-size:26px;">
+                    ମୁଁ ତୁମକୁ ବହୁତ ଭଲ ପାଏ ❤️
+                </h3>
+            </div>
+        `;
     }
 </script>
 
