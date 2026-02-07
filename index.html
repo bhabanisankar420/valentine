@@ -8,48 +8,50 @@
     body {
         height: 100vh;
         margin: 0;
+        overflow: hidden;
         display: flex;
         align-items: center;
         justify-content: center;
-        background: linear-gradient(135deg, #ff758c, #ff7eb3);
+        background: radial-gradient(circle at top, #ff9aa2, #ff4d6d);
         font-family: 'Segoe UI', Arial, sans-serif;
     }
 
     .box {
-        background: white;
-        padding: 40px;
-        border-radius: 25px;
+        background: rgba(255,255,255,0.95);
+        padding: 45px;
+        border-radius: 30px;
         text-align: center;
-        box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+        box-shadow: 0 20px 50px rgba(0,0,0,0.3);
         max-width: 90%;
+        z-index: 2;
     }
 
     h1 {
         color: #ff3366;
-        font-size: 42px;
+        font-size: 46px;
         margin-bottom: 10px;
     }
 
     h2 {
-        font-size: 26px;
+        font-size: 28px;
         color: #444;
-        margin-top: 5px;
+        margin-top: 10px;
     }
 
-    .odia {
-        font-size: 24px;
+    .special {
+        font-size: 30px;
         color: #d6336c;
-        margin: 15px 0;
         font-weight: bold;
+        margin: 18px 0;
     }
 
     button {
-        padding: 16px 36px;
-        font-size: 24px;
+        padding: 18px 40px;
+        font-size: 26px;
         border: none;
-        border-radius: 30px;
+        border-radius: 35px;
         cursor: pointer;
-        margin: 15px;
+        margin: 18px;
     }
 
     #yes {
@@ -61,21 +63,47 @@
         background-color: #cccccc;
         position: absolute;
     }
+
+    /* Floating hearts animation */
+    .heart {
+        position: absolute;
+        bottom: -50px;
+        font-size: 24px;
+        animation: floatUp 8s linear infinite;
+        opacity: 0.7;
+    }
+
+    @keyframes floatUp {
+        0% {
+            transform: translateY(0) scale(1);
+            opacity: 0;
+        }
+        10% { opacity: 0.7; }
+        100% {
+            transform: translateY(-110vh) scale(1.8);
+            opacity: 0;
+        }
+    }
 </style>
 </head>
 
 <body>
 
+<!-- Background Music -->
+<audio autoplay loop>
+    <source src="odia_marriage_music.mp3" type="audio/mpeg">
+</audio>
+
 <div class="box">
     <h1>Will you be my Valentine? 💖</h1>
 
-    <div class="odia">
-        ମୋ ଜୀବନର ସବୁଠାରୁ ସୁନ୍ଦର ମହିଳା 💕
+    <div class="special">
+        Junuu Madam is best ❤️
     </div>
 
     <h2>
-        Every day with you is special,<br>
-        but will you be mine on Valentine’s Day? 💍
+        From our wedding vows to every heartbeat,<br>
+        will you be my Valentine too? 💍
     </h2>
 
     <br>
@@ -91,8 +119,8 @@
     noBtn.addEventListener("touchstart", moveButton);
 
     function moveButton() {
-        const x = Math.random() * (window.innerWidth - 120);
-        const y = Math.random() * (window.innerHeight - 80);
+        const x = Math.random() * (window.innerWidth - 140);
+        const y = Math.random() * (window.innerHeight - 90);
         noBtn.style.left = x + "px";
         noBtn.style.top = y + "px";
     }
@@ -105,19 +133,29 @@
                 align-items:center;
                 justify-content:center;
                 flex-direction:column;
-                background:linear-gradient(135deg,#ff758c,#ff7eb3);
+                background:radial-gradient(circle,#ff9aa2,#ff4d6d);
                 color:white;
                 text-align:center;
                 font-family:'Segoe UI', Arial, sans-serif;
             ">
-                <h1 style="font-size:50px;">Yayyyyy!!! 😍💖</h1>
-                <h2 style="font-size:30px;">You are my Valentine 💍</h2>
-                <h3 style="font-size:26px;">
-                    ମୁଁ ତୁମକୁ ବହୁତ ଭଲ ପାଏ ❤️
-                </h3>
+                <h1 style="font-size:52px;">Yayyyyy!!! 😍💖</h1>
+                <h2 style="font-size:32px;">You are my Valentine 💍</h2>
+                <h3 style="font-size:28px;">Forever & Always ❤️</h3>
             </div>
         `;
     }
+
+    /* Create floating hearts */
+    setInterval(() => {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (6 + Math.random() * 4) + "s";
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 10000);
+    }, 400);
 </script>
 
 </body>
