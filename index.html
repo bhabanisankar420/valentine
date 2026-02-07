@@ -9,84 +9,79 @@
 <style>
     body {
         margin: 0;
-        height: 100svh;
-        display: flex;
-        justify-content: center;
+        height: 100vh;
+        overflow: hidden;
         background: linear-gradient(180deg, #ff758c, #ff7eb3);
         font-family: 'Segoe UI', Arial, sans-serif;
     }
 
-    .screen {
-        width: 100%;
-        max-width: 430px;
+    .content {
+        position: relative;
         height: 100%;
-        display: flex;
-        flex-direction: column;
-        padding: 6svh 5vw;
-        box-sizing: border-box;
+        width: 100%;
         text-align: center;
+        padding-top: 8vh;
+        box-sizing: border-box;
     }
 
     h1 {
-        font-size: 5svh;
+        font-size: 4.2vh;
         color: #ff3366;
-        margin-bottom: 1svh;
+        margin-bottom: 1vh;
+        line-height: 1.2;
     }
 
     .special {
-        font-size: 3.5svh;
+        font-size: 2.8vh;
         color: #d6336c;
         font-weight: bold;
-        margin-bottom: 2svh;
+        margin: 2vh 0;
     }
 
     h2 {
-        font-size: 2.8svh;
+        font-size: 2.4vh;
         color: #333;
         line-height: 1.4;
+        margin-bottom: 6vh;
+        padding: 0 10vw;
     }
 
-    /* ✅ YES area (fixed) */
-    .yes-area {
-        margin-top: 4svh;
-        margin-bottom: 4svh;
-        display: flex;
-        justify-content: center;
-    }
-
-    /* ✅ NO sandbox (separate & lower) */
-    .no-area {
+    /* YES button – fixed safe zone */
+    .yes-zone {
         position: relative;
-        flex-grow: 1;
-        margin-top: 2svh;
-    }
-
-    button {
-        padding: 1.8svh 6svw;
-        font-size: 3.2svh;
-        border: none;
-        border-radius: 50px;
-        cursor: pointer;
+        z-index: 5;
     }
 
     #yes {
-        background-color: #ff3366;
+        padding: 1.6vh 8vw;
+        font-size: 3vh;
+        border: none;
+        border-radius: 40px;
+        background: #ff3366;
         color: white;
+        cursor: pointer;
     }
 
+    /* NO button – full screen movement */
     #no {
-        background-color: #d9d9d9;
         position: absolute;
+        bottom: 6vh;
         left: 50%;
-        top: 20%;
         transform: translateX(-50%);
+        padding: 1.4vh 6vw;
+        font-size: 2.4vh;
+        border-radius: 30px;
+        border: none;
+        background: #e0e0e0;
+        cursor: pointer;
+        z-index: 10;
     }
 
     /* Floating hearts */
     .heart {
         position: absolute;
-        bottom: -5svh;
-        font-size: 2.6svh;
+        bottom: -5vh;
+        font-size: 2.4vh;
         animation: floatUp 8s linear infinite;
         opacity: 0.6;
     }
@@ -94,7 +89,7 @@
     @keyframes floatUp {
         from { transform: translateY(0); opacity: 0; }
         10% { opacity: 0.6; }
-        to { transform: translateY(-110svh); opacity: 0; }
+        to { transform: translateY(-110vh); opacity: 0; }
     }
 </style>
 </head>
@@ -105,40 +100,56 @@
     <source src="odia_marriage_music.mp3" type="audio/mpeg">
 </audio>
 
-<div class="screen">
+<div class="content">
 
-    <div>
-        <h1>Will you be my Valentine? ✨💖</h1>
-        <div class="special">Junuu Madam is best ❤️</div>
-        <h2>
-            Every moment with you is special,<br>
-            will you be my Valentine too? 💍
-        </h2>
+    <h1>
+        Will<br>
+        you be<br>
+        my<br>
+        Valentine? ✨💖
+    </h1>
+
+    <div class="special">
+        Junuu Madam is best ❤️
     </div>
 
-    <!-- YES is FIXED -->
-    <div class="yes-area">
+    <h2>
+        Every moment with you is special,<br>
+        will you be my Valentine too? 💍
+    </h2>
+
+    <div class="yes-zone">
         <button id="yes" onclick="yesClicked()">YES ❤️</button>
     </div>
 
-    <!-- NO can move ONLY here -->
-    <div class="no-area" id="noArea">
-        <button id="no">NO 🙈</button>
-    </div>
+    <button id="no">NO 🙈</button>
 
 </div>
 
 <script>
     const noBtn = document.getElementById("no");
-    const noArea = document.getElementById("noArea");
+    const yesBtn = document.getElementById("yes");
 
     noBtn.addEventListener("touchstart", moveNo);
     noBtn.addEventListener("mouseover", moveNo);
 
     function moveNo() {
-        const rect = noArea.getBoundingClientRect();
-        const x = Math.random() * (rect.width - 140);
-        const y = Math.random() * (rect.height - 80);
+        const screenW = window.innerWidth;
+        const screenH = window.innerHeight;
+
+        const yesRect = yesBtn.getBoundingClientRect();
+        let x, y;
+
+        do {
+            x = Math.random() * (screenW - noBtn.offsetWidth);
+            y = Math.random() * (screenH - noBtn.offsetHeight);
+        } while (
+            x > yesRect.left - 80 &&
+            x < yesRect.right + 80 &&
+            y > yesRect.top - 80 &&
+            y < yesRect.bottom + 80
+        );
+
         noBtn.style.left = x + "px";
         noBtn.style.top = y + "px";
     }
@@ -146,7 +157,7 @@
     function yesClicked() {
         document.body.innerHTML = `
             <div style="
-                height:100svh;
+                height:100vh;
                 display:flex;
                 flex-direction:column;
                 justify-content:center;
@@ -155,11 +166,10 @@
                 color:white;
                 text-align:center;
                 font-family:'Segoe UI', Arial, sans-serif;
-                padding:5svh 5vw;
             ">
-                <h1 style="font-size:6svh;">Yayyyyy!!! 😍❤️</h1>
-                <h2 style="font-size:4svh;">You are my Valentine 💍</h2>
-                <h3 style="font-size:3.2svh;">Forever & Always ❤️</h3>
+                <h1 style="font-size:5vh;">Yayyyyy!!! 😍❤️</h1>
+                <h2 style="font-size:3.2vh;">You are my Valentine 💍</h2>
+                <h3 style="font-size:2.8vh;">Forever & Always ❤️</h3>
             </div>
         `;
     }
