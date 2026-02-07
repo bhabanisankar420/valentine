@@ -1,16 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
-/>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <title>Be My Valentine ❤️</title>
 
 <style>
-/* ===== RESET ===== */
 * {
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
@@ -18,26 +14,23 @@
 
 body {
   margin: 0;
-  width: 100vw;
   height: 100vh;
   overflow: hidden;
   background: linear-gradient(180deg, #ff758c, #ff7eb3);
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, Arial, sans-serif;
-  position: relative;
 }
 
-/* ===== CONTENT ===== */
+/* Main content */
 .container {
-  position: relative;
-  z-index: 1;
-  width: 100%;
   height: 100%;
+  width: 100%;
   text-align: center;
   padding-top: 8vh;
+  position: relative;
+  z-index: 1;
 }
 
-/* Title */
 .title {
   font-size: 4.5vh;
   font-weight: 700;
@@ -45,7 +38,6 @@ body {
   line-height: 1.15;
 }
 
-/* Sub title */
 .special {
   margin-top: 2vh;
   font-size: 3vh;
@@ -53,7 +45,6 @@ body {
   color: #d6336c;
 }
 
-/* Message */
 .message {
   margin-top: 3vh;
   font-size: 2.5vh;
@@ -62,7 +53,7 @@ body {
   padding: 0 10vw;
 }
 
-/* YES button */
+/* YES button (fixed, safe) */
 .yes-btn {
   margin-top: 6vh;
   padding: 14px 44px;
@@ -74,48 +65,35 @@ body {
   cursor: pointer;
 }
 
-/* NO button — FIXED SIZE & FULL SCREEN FLOAT */
+/* ===== NO BUTTON SANDBOX ===== */
+.no-zone {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 40vh; /* big movement area */
+  pointer-events: none; /* allow clicks only on button */
+}
+
+/* NO button (locked size, never stretches) */
 .no-btn {
-  position: fixed;
+  position: absolute;
   padding: 12px 28px;
   font-size: 2.4vh;
   border-radius: 30px;
   border: none;
   background: #e0e0e0;
   cursor: pointer;
-  left: 50%;
-  bottom: 8vh;
-  transform: translateX(-50%);
+  white-space: nowrap;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  white-space: nowrap;
-  z-index: 999;
-}
-
-/* Floating hearts */
-.heart {
-  position: fixed;
-  bottom: -40px;
-  font-size: 2.4vh;
-  opacity: 0.6;
-  animation: floatUp 8s linear infinite;
-}
-
-@keyframes floatUp {
-  0% { transform: translateY(0); opacity: 0; }
-  10% { opacity: 0.6; }
-  100% { transform: translateY(-120vh); opacity: 0; }
+  pointer-events: auto;
 }
 </style>
 </head>
 
 <body>
-
-<!-- Optional background music -->
-<audio autoplay loop>
-  <source src="odia_marriage_music.mp3" type="audio/mpeg">
-</audio>
 
 <div class="container">
   <div class="title">
@@ -137,30 +115,33 @@ body {
   <button class="yes-btn" onclick="yesClicked()">YES ❤️</button>
 </div>
 
-<button class="no-btn" id="noBtn">NO 🙈</button>
+<!-- NO sandbox -->
+<div class="no-zone" id="noZone">
+  <button class="no-btn" id="noBtn">NO 🙈</button>
+</div>
 
 <script>
-/* ===== NO BUTTON FULL SCREEN FLOAT ===== */
 const noBtn = document.getElementById("noBtn");
+const zone = document.getElementById("noZone");
+
+/* initial position */
+moveNo();
+
+noBtn.addEventListener("touchstart", moveNo);
+noBtn.addEventListener("mouseover", moveNo);
 
 function moveNo() {
+  const zoneRect = zone.getBoundingClientRect();
   const btnW = noBtn.offsetWidth;
   const btnH = noBtn.offsetHeight;
 
-  const maxX = window.innerWidth - btnW;
-  const maxY = window.innerHeight - btnH;
-
-  const x = Math.random() * maxX;
-  const y = Math.random() * maxY;
+  const x = Math.random() * (zoneRect.width - btnW);
+  const y = Math.random() * (zoneRect.height - btnH);
 
   noBtn.style.left = x + "px";
   noBtn.style.top = y + "px";
 }
 
-noBtn.addEventListener("touchstart", moveNo);
-noBtn.addEventListener("mouseover", moveNo);
-
-/* ===== YES ACTION ===== */
 function yesClicked() {
   document.body.innerHTML = `
     <div style="
@@ -180,16 +161,6 @@ function yesClicked() {
     </div>
   `;
 }
-
-/* ===== HEARTS ===== */
-setInterval(() => {
-  const heart = document.createElement("div");
-  heart.className = "heart";
-  heart.innerHTML = "❤️";
-  heart.style.left = Math.random() * 100 + "vw";
-  document.body.appendChild(heart);
-  setTimeout(() => heart.remove(), 9000);
-}, 700);
 </script>
 
 </body>
