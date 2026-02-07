@@ -3,61 +3,71 @@
 <head>
 <meta charset="UTF-8">
 
-<!-- ✅ This fixes small look on mobile -->
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- LOCKS PROPER MOBILE SCALING -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 <title>Be My Valentine ❤️</title>
 
 <style>
     body {
-        height: 100vh;
         margin: 0;
-        overflow: hidden;
+        height: 100svh; /* correct mobile viewport */
         display: flex;
-        align-items: center;
+        align-items: stretch;
         justify-content: center;
-        background: linear-gradient(135deg, #ff758c, #ff7eb3);
+        background: linear-gradient(180deg, #ff758c, #ff7eb3);
         font-family: 'Segoe UI', Arial, sans-serif;
     }
 
-    .box {
-        background: rgba(255,255,255,0.97);
-        padding: 28px;
-        border-radius: 28px;
-        text-align: center;
-        box-shadow: 0 15px 40px rgba(0,0,0,0.25);
-        width: 90%;
-        max-width: 420px;
-        z-index: 2;
+    .screen {
+        width: 100%;
+        max-width: 430px; /* real phone width */
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 5svh 4vw;
+        box-sizing: border-box;
     }
 
     h1 {
+        text-align: center;
         color: #ff3366;
-        font-size: 2.4rem;
-        margin-bottom: 10px;
+        font-size: 5.2svh;
+        margin: 2svh 0 1svh;
     }
 
     .special {
-        font-size: 1.6rem;
+        text-align: center;
+        font-size: 3.6svh;
         color: #d6336c;
         font-weight: bold;
-        margin: 14px 0;
+        margin-bottom: 2svh;
     }
 
     h2 {
-        font-size: 1.3rem;
+        text-align: center;
+        font-size: 2.8svh;
         color: #444;
-        margin-top: 8px;
         line-height: 1.4;
+        padding: 0 2vw;
+    }
+
+    .buttons {
+        position: relative;
+        height: 22svh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     button {
-        padding: 16px 36px;
-        font-size: 1.4rem;
+        padding: 1.8svh 6svw;
+        font-size: 3.2svh;
         border: none;
-        border-radius: 40px;
+        border-radius: 50px;
         cursor: pointer;
-        margin: 16px;
+        margin: 1.5svh;
     }
 
     #yes {
@@ -70,69 +80,67 @@
         position: absolute;
     }
 
-    /* 💕 Soft floating hearts */
+    /* 💕 Floating hearts – soft & minimal */
     .heart {
         position: absolute;
-        bottom: -40px;
-        font-size: 22px;
-        animation: floatUp 7s linear infinite;
-        opacity: 0.7;
+        bottom: -4svh;
+        font-size: 2.8svh;
+        animation: floatUp 8s linear infinite;
+        opacity: 0.6;
     }
 
     @keyframes floatUp {
-        0% {
-            transform: translateY(0) scale(0.9);
+        from {
+            transform: translateY(0);
             opacity: 0;
         }
-        10% { opacity: 0.7; }
-        100% {
-            transform: translateY(-110vh) scale(1.6);
+        10% { opacity: 0.6; }
+        to {
+            transform: translateY(-110svh);
             opacity: 0;
         }
-    }
-
-    /* Extra support for very small phones */
-    @media (max-width: 380px) {
-        h1 { font-size: 2.1rem; }
-        .special { font-size: 1.4rem; }
-        h2 { font-size: 1.2rem; }
-        button { font-size: 1.3rem; padding: 14px 32px; }
     }
 </style>
 </head>
 
 <body>
 
-<!-- 🎵 Soft background music (same as before) -->
+<!-- 🎵 Background music -->
 <audio autoplay loop>
     <source src="odia_marriage_music.mp3" type="audio/mpeg">
 </audio>
 
-<div class="box">
-    <h1>Will you be my Valentine? 💖</h1>
+<div class="screen">
+    <div>
+        <h1>Will you be my Valentine? 💖</h1>
 
-    <div class="special">
-        Junuu Madam is best ❤️
+        <div class="special">
+            Junuu Madam is best ❤️
+        </div>
+
+        <h2>
+            Every moment with you is special,<br>
+            will you be my Valentine too? 💍
+        </h2>
     </div>
 
-    <h2>
-        Every moment with you is special,<br>
-        will you be my Valentine too? 💍
-    </h2>
-
-    <button id="yes" onclick="yesClicked()">YES ❤️</button>
-    <button id="no">NO 🙈</button>
+    <div class="buttons">
+        <button id="yes" onclick="yesClicked()">YES ❤️</button>
+        <button id="no">NO 🙈</button>
+    </div>
 </div>
 
 <script>
     const noBtn = document.getElementById("no");
+    const buttons = document.querySelector(".buttons");
 
-    noBtn.addEventListener("mouseover", moveButton);
     noBtn.addEventListener("touchstart", moveButton);
+    noBtn.addEventListener("mouseover", moveButton);
 
     function moveButton() {
-        const x = Math.random() * (window.innerWidth - 140);
-        const y = Math.random() * (window.innerHeight - 90);
+        const rect = buttons.getBoundingClientRect();
+        const x = Math.random() * (rect.width - 120);
+        const y = Math.random() * (rect.height - 60);
         noBtn.style.left = x + "px";
         noBtn.style.top = y + "px";
     }
@@ -140,35 +148,33 @@
     function yesClicked() {
         document.body.innerHTML = `
             <div style="
-                height:100vh;
+                height:100svh;
                 display:flex;
-                align-items:center;
-                justify-content:center;
                 flex-direction:column;
-                background:linear-gradient(135deg,#ff758c,#ff7eb3);
+                justify-content:center;
+                align-items:center;
+                background:linear-gradient(180deg,#ff758c,#ff7eb3);
                 color:white;
                 text-align:center;
                 font-family:'Segoe UI', Arial, sans-serif;
-                padding:20px;
+                padding:5svh 4vw;
             ">
-                <h1 style="font-size:3rem;">Yayyyyy!!! 😍❤️</h1>
-                <h2 style="font-size:1.8rem;">You are my Valentine 💍</h2>
-                <h3 style="font-size:1.5rem;">Forever & Always ❤️</h3>
+                <h1 style="font-size:6svh;">Yayyyyy!!! 😍❤️</h1>
+                <h2 style="font-size:4svh;">You are my Valentine 💍</h2>
+                <h3 style="font-size:3.4svh;">Forever & Always ❤️</h3>
             </div>
         `;
     }
 
-    /* 💕 Create floating hearts */
+    /* soft hearts */
     setInterval(() => {
         const heart = document.createElement("div");
         heart.className = "heart";
         heart.innerHTML = "❤️";
         heart.style.left = Math.random() * 100 + "vw";
-        heart.style.animationDuration = (5 + Math.random() * 4) + "s";
         document.body.appendChild(heart);
-
         setTimeout(() => heart.remove(), 9000);
-    }, 400);
+    }, 600);
 </script>
 
 </body>
