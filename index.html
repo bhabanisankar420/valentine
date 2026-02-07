@@ -12,22 +12,22 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background: radial-gradient(circle at bottom, #ffb703, #ff6a00, #9d0208);
+        background: radial-gradient(circle at top, #ff9aa2, #ff4d6d);
         font-family: 'Segoe UI', Arial, sans-serif;
     }
 
     .box {
-        background: rgba(255,255,255,0.96);
+        background: rgba(255,255,255,0.95);
         padding: 45px;
         border-radius: 30px;
         text-align: center;
-        box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+        box-shadow: 0 20px 50px rgba(0,0,0,0.3);
         max-width: 90%;
         z-index: 2;
     }
 
     h1 {
-        color: #c9184a;
+        color: #ff3366;
         font-size: 46px;
         margin-bottom: 10px;
     }
@@ -40,7 +40,7 @@
 
     .special {
         font-size: 30px;
-        color: #9d0208;
+        color: #d6336c;
         font-weight: bold;
         margin: 18px 0;
     }
@@ -55,7 +55,7 @@
     }
 
     #yes {
-        background-color: #c9184a;
+        background-color: #ff3366;
         color: white;
     }
 
@@ -64,22 +64,21 @@
         position: absolute;
     }
 
-    /* 🔥 Sacred Fire Animation */
-    .fire {
+    /* Floating hearts animation */
+    .heart {
         position: absolute;
-        bottom: -40px;
-        font-size: 26px;
-        animation: rise 6s linear infinite;
-        opacity: 0.8;
-        filter: drop-shadow(0 0 8px orange);
+        bottom: -50px;
+        font-size: 24px;
+        animation: floatUp 8s linear infinite;
+        opacity: 0.7;
     }
 
-    @keyframes rise {
+    @keyframes floatUp {
         0% {
-            transform: translateY(0) scale(0.8);
+            transform: translateY(0) scale(1);
             opacity: 0;
         }
-        10% { opacity: 0.9; }
+        10% { opacity: 0.7; }
         100% {
             transform: translateY(-110vh) scale(1.8);
             opacity: 0;
@@ -103,9 +102,11 @@
     </div>
 
     <h2>
-        As we walked around the sacred fire,<br>
-        will you be my Valentine too? 🔥💍
+        From our wedding vows to every heartbeat,<br>
+        will you be my Valentine too? 💍
     </h2>
+
+    <br>
 
     <button id="yes" onclick="yesClicked()">YES ❤️</button>
     <button id="no">NO 🙈</button>
@@ -132,29 +133,29 @@
                 align-items:center;
                 justify-content:center;
                 flex-direction:column;
-                background:radial-gradient(circle at bottom,#ffb703,#ff6a00,#9d0208);
+                background:radial-gradient(circle,#ff9aa2,#ff4d6d);
                 color:white;
                 text-align:center;
                 font-family:'Segoe UI', Arial, sans-serif;
             ">
-                <h1 style="font-size:52px;">Yayyyyy!!! 😍🔥</h1>
+                <h1 style="font-size:52px;">Yayyyyy!!! 😍💖</h1>
                 <h2 style="font-size:32px;">You are my Valentine 💍</h2>
-                <h3 style="font-size:28px;">Saptapadi Forever ❤️</h3>
+                <h3 style="font-size:28px;">Forever & Always ❤️</h3>
             </div>
         `;
     }
 
-    /* 🔥 Generate sacred fire flames */
+    /* Create floating hearts */
     setInterval(() => {
-        const fire = document.createElement("div");
-        fire.className = "fire";
-        fire.innerHTML = "🔥";
-        fire.style.left = Math.random() * 100 + "vw";
-        fire.style.animationDuration = (4 + Math.random() * 3) + "s";
-        document.body.appendChild(fire);
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (6 + Math.random() * 4) + "s";
+        document.body.appendChild(heart);
 
-        setTimeout(() => fire.remove(), 8000);
-    }, 300);
+        setTimeout(() => heart.remove(), 10000);
+    }, 400);
 </script>
 
 </body>
