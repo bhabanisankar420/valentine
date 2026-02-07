@@ -1,166 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+
+<!-- ✅ This fixes small look on mobile -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Be My Valentine ❤️</title>
 
 <style>
-* {
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
-}
+    body {
+        height: 100vh;
+        margin: 0;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #ff758c, #ff7eb3);
+        font-family: 'Segoe UI', Arial, sans-serif;
+    }
 
-body {
-  margin: 0;
-  height: 100vh;
-  overflow: hidden;
-  background: linear-gradient(180deg, #ff758c, #ff7eb3);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, Arial, sans-serif;
-}
+    .box {
+        background: rgba(255,255,255,0.97);
+        padding: 28px;
+        border-radius: 28px;
+        text-align: center;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+        width: 90%;
+        max-width: 420px;
+        z-index: 2;
+    }
 
-/* Main content */
-.container {
-  height: 100%;
-  width: 100%;
-  text-align: center;
-  padding-top: 8vh;
-  position: relative;
-  z-index: 1;
-}
+    h1 {
+        color: #ff3366;
+        font-size: 2.4rem;
+        margin-bottom: 10px;
+    }
 
-.title {
-  font-size: 4.5vh;
-  font-weight: 700;
-  color: #ff3366;
-  line-height: 1.15;
-}
+    .special {
+        font-size: 1.6rem;
+        color: #d6336c;
+        font-weight: bold;
+        margin: 14px 0;
+    }
 
-.special {
-  margin-top: 2vh;
-  font-size: 3vh;
-  font-weight: 600;
-  color: #d6336c;
-}
+    h2 {
+        font-size: 1.3rem;
+        color: #444;
+        margin-top: 8px;
+        line-height: 1.4;
+    }
 
-.message {
-  margin-top: 3vh;
-  font-size: 2.5vh;
-  color: #333;
-  line-height: 1.4;
-  padding: 0 10vw;
-}
+    button {
+        padding: 16px 36px;
+        font-size: 1.4rem;
+        border: none;
+        border-radius: 40px;
+        cursor: pointer;
+        margin: 16px;
+    }
 
-/* YES button (fixed, safe) */
-.yes-btn {
-  margin-top: 6vh;
-  padding: 14px 44px;
-  font-size: 3vh;
-  border-radius: 40px;
-  border: none;
-  background: #ff3366;
-  color: white;
-  cursor: pointer;
-}
+    #yes {
+        background-color: #ff3366;
+        color: white;
+    }
 
-/* ===== NO BUTTON SANDBOX ===== */
-.no-zone {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 40vh; /* big movement area */
-  pointer-events: none; /* allow clicks only on button */
-}
+    #no {
+        background-color: #cccccc;
+        position: absolute;
+    }
 
-/* NO button (locked size, never stretches) */
-.no-btn {
-  position: absolute;
-  padding: 12px 28px;
-  font-size: 2.4vh;
-  border-radius: 30px;
-  border: none;
-  background: #e0e0e0;
-  cursor: pointer;
-  white-space: nowrap;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: auto;
-}
+    /* 💕 Soft floating hearts */
+    .heart {
+        position: absolute;
+        bottom: -40px;
+        font-size: 22px;
+        animation: floatUp 7s linear infinite;
+        opacity: 0.7;
+    }
+
+    @keyframes floatUp {
+        0% {
+            transform: translateY(0) scale(0.9);
+            opacity: 0;
+        }
+        10% { opacity: 0.7; }
+        100% {
+            transform: translateY(-110vh) scale(1.6);
+            opacity: 0;
+        }
+    }
+
+    /* Extra support for very small phones */
+    @media (max-width: 380px) {
+        h1 { font-size: 2.1rem; }
+        .special { font-size: 1.4rem; }
+        h2 { font-size: 1.2rem; }
+        button { font-size: 1.3rem; padding: 14px 32px; }
+    }
 </style>
 </head>
 
 <body>
 
-<div class="container">
-  <div class="title">
-    Will<br>
-    you be<br>
-    my<br>
-    Valentine? ✨💖
-  </div>
+<!-- 🎵 Soft background music (same as before) -->
+<audio autoplay loop>
+    <source src="odia_marriage_music.mp3" type="audio/mpeg">
+</audio>
 
-  <div class="special">
-    Junuu Madam is best ❤️
-  </div>
+<div class="box">
+    <h1>Will you be my Valentine? 💖</h1>
 
-  <div class="message">
-    Every moment with you is special,<br>
-    will you be my Valentine too? 💍
-  </div>
+    <div class="special">
+        Junuu Madam is best ❤️
+    </div>
 
-  <button class="yes-btn" onclick="yesClicked()">YES ❤️</button>
-</div>
+    <h2>
+        Every moment with you is special,<br>
+        will you be my Valentine too? 💍
+    </h2>
 
-<!-- NO sandbox -->
-<div class="no-zone" id="noZone">
-  <button class="no-btn" id="noBtn">NO 🙈</button>
+    <button id="yes" onclick="yesClicked()">YES ❤️</button>
+    <button id="no">NO 🙈</button>
 </div>
 
 <script>
-const noBtn = document.getElementById("noBtn");
-const zone = document.getElementById("noZone");
+    const noBtn = document.getElementById("no");
 
-/* initial position */
-moveNo();
+    noBtn.addEventListener("mouseover", moveButton);
+    noBtn.addEventListener("touchstart", moveButton);
 
-noBtn.addEventListener("touchstart", moveNo);
-noBtn.addEventListener("mouseover", moveNo);
+    function moveButton() {
+        const x = Math.random() * (window.innerWidth - 140);
+        const y = Math.random() * (window.innerHeight - 90);
+        noBtn.style.left = x + "px";
+        noBtn.style.top = y + "px";
+    }
 
-function moveNo() {
-  const zoneRect = zone.getBoundingClientRect();
-  const btnW = noBtn.offsetWidth;
-  const btnH = noBtn.offsetHeight;
+    function yesClicked() {
+        document.body.innerHTML = `
+            <div style="
+                height:100vh;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                flex-direction:column;
+                background:linear-gradient(135deg,#ff758c,#ff7eb3);
+                color:white;
+                text-align:center;
+                font-family:'Segoe UI', Arial, sans-serif;
+                padding:20px;
+            ">
+                <h1 style="font-size:3rem;">Yayyyyy!!! 😍❤️</h1>
+                <h2 style="font-size:1.8rem;">You are my Valentine 💍</h2>
+                <h3 style="font-size:1.5rem;">Forever & Always ❤️</h3>
+            </div>
+        `;
+    }
 
-  const x = Math.random() * (zoneRect.width - btnW);
-  const y = Math.random() * (zoneRect.height - btnH);
+    /* 💕 Create floating hearts */
+    setInterval(() => {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (5 + Math.random() * 4) + "s";
+        document.body.appendChild(heart);
 
-  noBtn.style.left = x + "px";
-  noBtn.style.top = y + "px";
-}
-
-function yesClicked() {
-  document.body.innerHTML = `
-    <div style="
-      height:100vh;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      align-items:center;
-      background:linear-gradient(180deg,#ff758c,#ff7eb3);
-      color:white;
-      text-align:center;
-      font-family:inherit;
-    ">
-      <h1 style="font-size:5vh;">Yayyyyy!!! 😍❤️</h1>
-      <h2 style="font-size:3.2vh;">You are my Valentine 💍</h2>
-      <h3 style="font-size:2.8vh;">Forever & Always ❤️</h3>
-    </div>
-  `;
-}
+        setTimeout(() => heart.remove(), 9000);
+    }, 400);
 </script>
 
 </body>
