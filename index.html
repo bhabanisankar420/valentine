@@ -2,186 +2,194 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+/>
 
 <title>Be My Valentine ❤️</title>
 
 <style>
-    body {
-        margin: 0;
-        height: 100vh;
-        overflow: hidden;
-        background: linear-gradient(180deg, #ff758c, #ff7eb3);
-        font-family: 'Segoe UI', Arial, sans-serif;
-    }
+/* ===== RESET ===== */
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
 
-    .content {
-        position: relative;
-        height: 100%;
-        width: 100%;
-        text-align: center;
-        padding-top: 8vh;
-        box-sizing: border-box;
-    }
+body {
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(180deg, #ff758c, #ff7eb3);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Arial, sans-serif;
+  position: relative;
+}
 
-    h1 {
-        font-size: 4.2vh;
-        color: #ff3366;
-        margin-bottom: 1vh;
-        line-height: 1.2;
-    }
+/* ===== CONTENT ===== */
+.container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  padding-top: 8vh;
+}
 
-    .special {
-        font-size: 2.8vh;
-        color: #d6336c;
-        font-weight: bold;
-        margin: 2vh 0;
-    }
+/* Title */
+.title {
+  font-size: 4.5vh;
+  font-weight: 700;
+  color: #ff3366;
+  line-height: 1.15;
+}
 
-    h2 {
-        font-size: 2.4vh;
-        color: #333;
-        line-height: 1.4;
-        margin-bottom: 6vh;
-        padding: 0 10vw;
-    }
+/* Sub title */
+.special {
+  margin-top: 2vh;
+  font-size: 3vh;
+  font-weight: 600;
+  color: #d6336c;
+}
 
-    /* YES button – fixed safe zone */
-    .yes-zone {
-        position: relative;
-        z-index: 5;
-    }
+/* Message */
+.message {
+  margin-top: 3vh;
+  font-size: 2.5vh;
+  color: #333;
+  line-height: 1.4;
+  padding: 0 10vw;
+}
 
-    #yes {
-        padding: 1.6vh 8vw;
-        font-size: 3vh;
-        border: none;
-        border-radius: 40px;
-        background: #ff3366;
-        color: white;
-        cursor: pointer;
-    }
+/* YES button */
+.yes-btn {
+  margin-top: 6vh;
+  padding: 14px 44px;
+  font-size: 3vh;
+  border-radius: 40px;
+  border: none;
+  background: #ff3366;
+  color: white;
+  cursor: pointer;
+}
 
-    /* NO button – full screen movement */
-    #no {
-        position: absolute;
-        bottom: 6vh;
-        left: 50%;
-        transform: translateX(-50%);
-        padding: 1.4vh 6vw;
-        font-size: 2.4vh;
-        border-radius: 30px;
-        border: none;
-        background: #e0e0e0;
-        cursor: pointer;
-        z-index: 10;
-    }
+/* NO button — FIXED SIZE & FULL SCREEN FLOAT */
+.no-btn {
+  position: fixed;
+  padding: 12px 28px;
+  font-size: 2.4vh;
+  border-radius: 30px;
+  border: none;
+  background: #e0e0e0;
+  cursor: pointer;
+  left: 50%;
+  bottom: 8vh;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  z-index: 999;
+}
 
-    /* Floating hearts */
-    .heart {
-        position: absolute;
-        bottom: -5vh;
-        font-size: 2.4vh;
-        animation: floatUp 8s linear infinite;
-        opacity: 0.6;
-    }
+/* Floating hearts */
+.heart {
+  position: fixed;
+  bottom: -40px;
+  font-size: 2.4vh;
+  opacity: 0.6;
+  animation: floatUp 8s linear infinite;
+}
 
-    @keyframes floatUp {
-        from { transform: translateY(0); opacity: 0; }
-        10% { opacity: 0.6; }
-        to { transform: translateY(-110vh); opacity: 0; }
-    }
+@keyframes floatUp {
+  0% { transform: translateY(0); opacity: 0; }
+  10% { opacity: 0.6; }
+  100% { transform: translateY(-120vh); opacity: 0; }
+}
 </style>
 </head>
 
 <body>
 
+<!-- Optional background music -->
 <audio autoplay loop>
-    <source src="odia_marriage_music.mp3" type="audio/mpeg">
+  <source src="odia_marriage_music.mp3" type="audio/mpeg">
 </audio>
 
-<div class="content">
+<div class="container">
+  <div class="title">
+    Will<br>
+    you be<br>
+    my<br>
+    Valentine? ✨💖
+  </div>
 
-    <h1>
-        Will<br>
-        you be<br>
-        my<br>
-        Valentine? ✨💖
-    </h1>
+  <div class="special">
+    Junuu Madam is best ❤️
+  </div>
 
-    <div class="special">
-        Junuu Madam is best ❤️
-    </div>
+  <div class="message">
+    Every moment with you is special,<br>
+    will you be my Valentine too? 💍
+  </div>
 
-    <h2>
-        Every moment with you is special,<br>
-        will you be my Valentine too? 💍
-    </h2>
-
-    <div class="yes-zone">
-        <button id="yes" onclick="yesClicked()">YES ❤️</button>
-    </div>
-
-    <button id="no">NO 🙈</button>
-
+  <button class="yes-btn" onclick="yesClicked()">YES ❤️</button>
 </div>
 
+<button class="no-btn" id="noBtn">NO 🙈</button>
+
 <script>
-    const noBtn = document.getElementById("no");
-    const yesBtn = document.getElementById("yes");
+/* ===== NO BUTTON FULL SCREEN FLOAT ===== */
+const noBtn = document.getElementById("noBtn");
 
-    noBtn.addEventListener("touchstart", moveNo);
-    noBtn.addEventListener("mouseover", moveNo);
+function moveNo() {
+  const btnW = noBtn.offsetWidth;
+  const btnH = noBtn.offsetHeight;
 
-    function moveNo() {
-        const screenW = window.innerWidth;
-        const screenH = window.innerHeight;
+  const maxX = window.innerWidth - btnW;
+  const maxY = window.innerHeight - btnH;
 
-        const yesRect = yesBtn.getBoundingClientRect();
-        let x, y;
+  const x = Math.random() * maxX;
+  const y = Math.random() * maxY;
 
-        do {
-            x = Math.random() * (screenW - noBtn.offsetWidth);
-            y = Math.random() * (screenH - noBtn.offsetHeight);
-        } while (
-            x > yesRect.left - 80 &&
-            x < yesRect.right + 80 &&
-            y > yesRect.top - 80 &&
-            y < yesRect.bottom + 80
-        );
+  noBtn.style.left = x + "px";
+  noBtn.style.top = y + "px";
+}
 
-        noBtn.style.left = x + "px";
-        noBtn.style.top = y + "px";
-    }
+noBtn.addEventListener("touchstart", moveNo);
+noBtn.addEventListener("mouseover", moveNo);
 
-    function yesClicked() {
-        document.body.innerHTML = `
-            <div style="
-                height:100vh;
-                display:flex;
-                flex-direction:column;
-                justify-content:center;
-                align-items:center;
-                background:linear-gradient(180deg,#ff758c,#ff7eb3);
-                color:white;
-                text-align:center;
-                font-family:'Segoe UI', Arial, sans-serif;
-            ">
-                <h1 style="font-size:5vh;">Yayyyyy!!! 😍❤️</h1>
-                <h2 style="font-size:3.2vh;">You are my Valentine 💍</h2>
-                <h3 style="font-size:2.8vh;">Forever & Always ❤️</h3>
-            </div>
-        `;
-    }
+/* ===== YES ACTION ===== */
+function yesClicked() {
+  document.body.innerHTML = `
+    <div style="
+      height:100vh;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      background:linear-gradient(180deg,#ff758c,#ff7eb3);
+      color:white;
+      text-align:center;
+      font-family:inherit;
+    ">
+      <h1 style="font-size:5vh;">Yayyyyy!!! 😍❤️</h1>
+      <h2 style="font-size:3.2vh;">You are my Valentine 💍</h2>
+      <h3 style="font-size:2.8vh;">Forever & Always ❤️</h3>
+    </div>
+  `;
+}
 
-    setInterval(() => {
-        const heart = document.createElement("div");
-        heart.className = "heart";
-        heart.innerHTML = "❤️";
-        heart.style.left = Math.random() * 100 + "vw";
-        document.body.appendChild(heart);
-        setTimeout(() => heart.remove(), 9000);
-    }, 700);
+/* ===== HEARTS ===== */
+setInterval(() => {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "❤️";
+  heart.style.left = Math.random() * 100 + "vw";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 9000);
+}, 700);
 </script>
 
 </body>
